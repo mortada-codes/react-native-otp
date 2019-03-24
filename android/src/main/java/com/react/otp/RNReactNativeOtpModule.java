@@ -1,5 +1,5 @@
 
-package com.react;
+package com.react.otp;
 
 import android.support.annotation.NonNull;
 

@@ -1,4 +1,4 @@
-package com.react;
+package com.react.otp;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

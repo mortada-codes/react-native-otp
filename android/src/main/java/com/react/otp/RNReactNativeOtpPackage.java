@@ -1,5 +1,5 @@
 
-package com.react;
+package com.react.otp;
 
 import java.util.Arrays;
 import java.util.Collections;
