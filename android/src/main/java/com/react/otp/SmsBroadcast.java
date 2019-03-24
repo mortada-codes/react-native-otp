@@ -38,7 +38,6 @@ public class SmsBroadcast extends BroadcastReceiver {
                     break;
                 case CommonStatusCodes.TIMEOUT:
                     rContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onVerifySMSTIMEOUT",payload);
-
                     break;
             }
         }
