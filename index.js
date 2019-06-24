@@ -17,7 +17,7 @@ const OTP_EVENT = 'onVerifySMS';
 module.detectorEmitter  = function(callback){
 
 
-new NativeEventEmitter(module)
+const detectorEmitter =  new NativeEventEmitter(module)
 const subscription = detectorEmitter.addListener(
     OTP_EVENT,
     callback);
