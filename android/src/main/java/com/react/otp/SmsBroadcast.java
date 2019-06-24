@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+
+import com.facebook.react.ReactApplication;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
@@ -17,8 +19,8 @@ public class SmsBroadcast extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        ReactContext rContext = (ReactContext) context;
+       ReactApplication app = (ReactApplication) context.getApplicationContext();
+        ReactContext rContext =  app.getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
         // Create map for params
         WritableMap payload = Arguments.createMap();
         // Put data to map
@@ -33,11 +35,14 @@ public class SmsBroadcast extends BroadcastReceiver {
                     String message = (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE);
 
                     payload.putString("otp",message);
+                    payload.putString("status","success");
                     rContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onVerifySMS",payload);
 
                     break;
                 case CommonStatusCodes.TIMEOUT:
-                    rContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onVerifySMSTIMEOUT",payload);
+                    payload.putString("status","fail");
+                    payload.putString("reason","timeout");
+                    rContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onVerifySMS",payload);
                     break;
             }
         }

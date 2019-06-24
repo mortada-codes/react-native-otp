@@ -28,13 +28,18 @@ android {
 
 repositories {
     google()
-    mavenCentral()
+    jcenter()
+
+    maven {
+        url "$rootDir/../node_modules/react-native/android"
+    }
 }
 
 dependencies {
-    implementation  'com.facebook.react:react-native:+'
+    implementation 'com.facebook.react:react-native:+'
     implementation 'com.google.android.gms:play-services-base:16.1.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:12.0.1'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
+  //  implementation 'com.android.support:appcompat-v7:28.0.0'
 }
   

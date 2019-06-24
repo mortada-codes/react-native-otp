@@ -3,11 +3,11 @@
 
 ## Getting started
 
-`$ npm install react-native-react-native-otp --save`
+`$ npm install react-native-autodetect-otp --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-react-native-otp`
+`$ react-native link react-native-autodetect-otp`
 
 ### Manual installation
 
@@ -45,7 +45,7 @@
 ## Usage
 ```javascript
 import { NativeEventEmitter, NativeModules } from 'react-native';
-import RNReactNativeOtp from 'react-native-react-native-otp';
+import RNReactNativeOtp from 'react-native-autodetect-otp';
 
 const { ModuleWithEmitter } = NativeModules;
 
