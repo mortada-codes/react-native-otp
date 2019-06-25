@@ -5,19 +5,10 @@
 
 `$ npm install react-native-autodetect-otp --save`
 
-### Mostly automatic installation
-
-`$ react-native link react-native-autodetect-otp`
-
+###  follow play servies docs to generate hash
+ https://developers.google.com/identity/sms-retriever/verify
 ### Manual installation
 
-
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-react-native-otp` and add `RNReactNativeOtp.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNReactNativeOtp.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
 
 #### Android
 
@@ -63,13 +54,14 @@ class VerifyOTP extends Component{
 
 	async componentDidMount(){
 	const result = await 	RNReactNativeOtp.requestSMS();
-const subscription = eventEmitter.addListener('onVerifySMS', onReceiveOTP);
-const timeoutSubscription = eventEmitter.addListener('onVerifySMSTIMEOUT', onOTPTimeout);
-
+this.unsubscribe =    ReactNativeOtp.detectorEmitter((result)=>{
+            // you will get the sms message here
+          })    
+          })
 }
 
 componentWillUnmout(){
-	subscription.remove();
+	this.unsubscribe()
 	timeoutSubscription.remove();
 }
 }
@@ -77,6 +69,11 @@ componentWillUnmout(){
 
 ```
   
+  ```
+  result object properties:
+  result.otp : the sms message
+  result.status : fail || success
+  ```
 
 
 

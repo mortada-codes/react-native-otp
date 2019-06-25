@@ -3,7 +3,7 @@ import { NativeModules,NativeEventEmitter,Platform } from 'react-native';
 let module = {
     requestSMS:new Promise(function(resolve,reject){
         if(__DEV__){
-            console.log('detect OTP avialable only for android')
+            console.warn('detect OTP avialable only for android')
         }
         resolve()
     }),
@@ -11,7 +11,6 @@ let module = {
 }
 if(Platform.OS === 'android'){
 module = NativeModules.RNReactNativeOtp;
-
 const OTP_EVENT = 'onVerifySMS';
 
 module.detectorEmitter  = function(callback){
